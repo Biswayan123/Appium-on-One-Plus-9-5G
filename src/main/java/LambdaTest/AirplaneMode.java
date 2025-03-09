@@ -1,6 +1,8 @@
 package LambdaTest;
 
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import org.openqa.selenium.By;
@@ -12,13 +14,17 @@ import org.testng.Assert;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.android.options.UiAutomator2Options;
 
 public class AirplaneMode {
 	
-	public static void main(String[] args) throws MalformedURLException, InterruptedException {
+	public static void main(String[] args) throws MalformedURLException, InterruptedException, URISyntaxException {
 		
 		DesiredCapabilities cap = new DesiredCapabilities();
 		// the cap object stores all the desired capabilities to be invoked into the Android driver
+		UiAutomator2Options options = new UiAutomator2Options();
+		options.setDeviceName("Test_Emulator");
+		
 		cap.setCapability("platformName", "Android");
 		cap.setCapability("automationName", "UiAutomator2");
 		cap.setCapability("deviceName", "Test_Emulator");
@@ -28,7 +34,7 @@ public class AirplaneMode {
         cap.setCapability("appActivity", ".Settings");
 //        Path path = Paths.get("http://127.0.0.1:4723/wd/hub") ;
 //        URI uri = path.toUri () ;
-        AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"),cap);
+        AndroidDriver driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(),cap);
 		
 		// Open Airplane Mode settings
         driver.findElement(By.id("com.android.settings:id/search_action_bar")).click();

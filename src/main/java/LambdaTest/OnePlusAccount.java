@@ -17,7 +17,11 @@ public class OnePlusAccount {
 	public static void main(String[] args) throws MalformedURLException {
 		DesiredCapabilities cap = new DesiredCapabilities();
 		
+		
 		// The 'cap' object stores all the desired capabilities to be invoked into the Android driver
+		
+		UiAutomator2Options options = new UiAutomator2Options();
+		options.setDeviceName("Test_Emulator");
 		cap.setCapability("platformName", "Android");
 		cap.setCapability("automationName", "UiAutomator2");
 		cap.setCapability("deviceName", "Test_Emulator");
